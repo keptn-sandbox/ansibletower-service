@@ -1,2 +1,2 @@
 # ansibletower-service
-(work in progress) Service to communite with Ansible Tower
+(work in progress) Service to communicate with Ansible Tower
