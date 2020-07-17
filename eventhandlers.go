@@ -45,7 +45,7 @@ func HandleDeploymentFinishedEvent(myKeptn *keptn.Keptn, incomingEvent cloudeven
 	// ToDo: Implement your tests here
 
 	// Send Test Finished Event
-	// return myKeptn.SendTestsFinishedEvent(&incomingEvent, "", "", startTime, "pass", nil, "keptn-service-template-go")
+	// return myKeptn.SendTestsFinishedEvent(&incomingEvent, "", "", startTime, "pass", nil, "ansibletower-service")
 	return nil
 }
 

@@ -1,23 +1,23 @@
 ---
-# Deployment of our keptn-service-template-go
+# Deployment of our ansibletower-service
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: keptn-service-template-go
+  name: ansibletower-service
   namespace: keptn
 spec:
   selector:
     matchLabels:
-      run: keptn-service-template-go
+      run: ansibletower-service
   replicas: 1
   template:
     metadata:
       labels:
-        run: keptn-service-template-go
+        run: ansibletower-service
     spec:
       containers:
-        - name: keptn-service-template-go
-          image: keptnsandbox/keptn-service-template-go:latest # Todo: Replace this with your image name
+        - name: ansibletower-service
+          image: keptnsandbox/ansibletower-service:latest # Todo: Replace this with your image name
           ports:
             - containerPort: 8080
           env:
@@ -26,26 +26,26 @@ spec:
             - name: CONFIGURATION_SERVICE
               value: 'http://configuration-service.keptn.svc.cluster.local:8080'
 ---
-# Expose keptn-service-template-go via Port 8080 within the cluster
+# Expose ansibletower-service via Port 8080 within the cluster
 apiVersion: v1
 kind: Service
 metadata:
-  name: keptn-service-template-go
+  name: ansibletower-service
   namespace: keptn
   labels:
-    run: keptn-service-template-go
+    run: ansibletower-service
 spec:
   ports:
     - port: 8080
       protocol: TCP
   selector:
-    run: keptn-service-template-go
+    run: ansibletower-service
 ---
 ## Subscribe to events via a keptn/distributor
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: keptn-service-template-go-distributor
+  name: ansibletower-service-distributor
   namespace: keptn
 spec:
   selector:
@@ -76,4 +76,4 @@ spec:
             - name: PUBSUB_TOPIC
               value: 'sh.keptn.>'
             - name: PUBSUB_RECIPIENT
-              value: 'keptn-service-template-go'
+              value: 'ansibletower-service'
