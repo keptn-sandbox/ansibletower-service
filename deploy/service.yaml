@@ -17,14 +17,25 @@ spec:
     spec:
       containers:
         - name: ansibletower-service
-          image: keptnsandbox/ansibletower-service:latest # Todo: Replace this with your image name
+          image: gabrielprioli/ansibletower-service:latest # Todo: Replace this with your image name
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
           env:
             - name: EVENTBROKER
-              value: 'http://event-broker.keptn.svc.cluster.local/keptn'
+              value: "http://event-broker.keptn.svc.cluster.local/keptn"
             - name: CONFIGURATION_SERVICE
-              value: 'http://configuration-service.keptn.svc.cluster.local:8080'
+              value: "http://configuration-service.keptn.svc.cluster.local:8080"
+            - name: ANSIBLETOWER_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: ansibletower
+                  key: ansibletower-host
+            - name: ANSIBLETOWER_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: ansibletower
+                  key: ansibletower-token
 ---
 # Expose ansibletower-service via Port 8080 within the cluster
 apiVersion: v1
@@ -71,9 +82,9 @@ spec:
               cpu: "500m"
           env:
             - name: PUBSUB_URL
-              value: 'nats://keptn-nats-cluster'
+              value: "nats://keptn-nats-cluster"
             # listen to all events in sh.keptn. - see https://github.com/keptn/spec/blob/0.1.3/cloudevents.md
             - name: PUBSUB_TOPIC
-              value: 'sh.keptn.>'
+              value: "sh.keptn.event.action.triggered"
             - name: PUBSUB_RECIPIENT
-              value: 'ansibletower-service'
+              value: "ansibletower-service"
