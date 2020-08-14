@@ -1,4 +1,4 @@
-module example.com/ansibletower-service
+module github.com/keptn-sandbox/ansibletower-service
 
 go 1.13
 
