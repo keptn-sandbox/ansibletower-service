@@ -114,19 +114,19 @@ func HandleActionTriggeredEvent(myKeptn *keptn.Keptn, incomingEvent cloudevents.
 	if data.Action.Action == "job_template_launch" {
 		log.Printf("Supported action: %s", data.Action.Action)
 
-		var err error
-		var jobURL string
-
+		// populate action started event from incoming event
 		actionStartedEventData := &keptn.ActionStartedEventData{}
-		err = incomingEvent.DataAs(actionStartedEventData)
+		err := incomingEvent.DataAs(actionStartedEventData)
 		if err != nil {
 			log.Printf("Got Data Error: %s", err.Error())
 			return err
+			// TODO should this send any event?
 		}
 
-		// myKeptn.SendActionStartedEvent(actionStartedEventData) // TODO: implement the SendActionStartedEvent in keptn/go-utils/pkg/lib/events.go
+		myKeptn.SendActionStartedEvent(&incomingEvent, data.Labels, incomingEvent.Source())
 
 		// launch job template
+		var jobURL string
 		jobURL, err = tower.LaunchJobTemplate(data)
 
 		if err != nil {
@@ -139,7 +139,11 @@ func HandleActionTriggeredEvent(myKeptn *keptn.Keptn, incomingEvent cloudevents.
 
 		log.Println("all done.")
 
-		//myKeptn.SendActionFinishedEvent() TODO: implement the SendActionFinishedEvent in keptn/go-utils/pkg/lib/events.go
+		var actionResult keptn.ActionResult
+		actionResult.Result = "pass"
+		actionResult.Status = "succeeded"
+
+		myKeptn.SendActionFinishedEvent(&incomingEvent, actionResult, data.Labels, incomingEvent.Source())
 	}
 
 	return nil
