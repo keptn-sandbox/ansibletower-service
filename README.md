@@ -41,6 +41,8 @@ The next steps assume you already have Keptn installed (both the CLI and in the 
 
 # Install ansibletower-service
 
+`cd ..`
+
 ## Clone this repository
 `git clone https://github.com/keptn-sandbox/ansibletower-service.git`
 
