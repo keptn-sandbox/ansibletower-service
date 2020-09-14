@@ -88,6 +88,7 @@ Note: the name of the remediation file must be `remediation.yaml`.
 
 # Dummy test event
 
+Save the contents to a file, it doesn't matter which name you use.
 ```
 {
     "type": "sh.keptn.event.problem.open",
@@ -109,9 +110,15 @@ Note: the name of the remediation file must be `remediation.yaml`.
 
 Note that the `ProblemTitle` value here must exactly match the `problemType` value in the remediation file.
 
-# Validate
+## Send event
 
-`keptn send event --file=./test-event.json`
+Send the event to trigger the remediation action.
+
+`keptn send event --file=./(your test file).json`
+
+    Note: change the value between parentesis to match the file name you used for the dummy event.
+
+# Validate
 
 ## Check the pod logs
 
