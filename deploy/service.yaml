@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: ansibletower-service
-          image: jetzlstorfer/ansibletower-service:dev # Todo: Replace this with your image name
+          image: keptnsandbox/ansibletower-service:latest 
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
