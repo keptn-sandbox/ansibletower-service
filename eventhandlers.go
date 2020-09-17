@@ -141,7 +141,7 @@ func HandleActionTriggeredEvent(myKeptn *keptn.Keptn, incomingEvent cloudevents.
 		// wait for job to finish
 		tower.WaitJobEnd(jobURL)
 
-		log.Println("all done.")
+		log.Println("Job finished.")
 
 		var actionResult keptn.ActionResult
 		actionResult.Result = "pass"
