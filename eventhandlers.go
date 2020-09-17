@@ -149,7 +149,7 @@ func HandleActionTriggeredEvent(myKeptn *keptn.Keptn, incomingEvent cloudevents.
 
 		myKeptn.SendActionFinishedEvent(&incomingEvent, actionResult, data.Labels, "ansibletower-service")
 		if err != nil {
-			log.Printf("Got Error From SendActionFinished: %s", err.Error())
+			log.Printf("Got Error From SendActionFinishedEvent: %s", err.Error())
 			return err
 		}
 	}
