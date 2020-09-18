@@ -114,7 +114,7 @@ This project is currently being developed and tested with: keptn 0.7.1, Kubernet
     keptn add-resource --project=sockshop --stage=production --service=carts --resource=remediation-tower.yaml --resourceUri=remediation.yaml
     ```
 
-    Note: the name of the remediation file must be `remediation.yaml`.
+    Note: it is mandatory that the `resourceUri` parameter be exactly `remediation.yaml`
 
 1.  Dummy test event
 
@@ -183,4 +183,3 @@ This project is currently being developed and tested with: keptn 0.7.1, Kubernet
 
 - Validate the result of the action and send the correct values in the `ActionResult`
 - Parameterize certificate skipping
-
