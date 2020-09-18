@@ -150,7 +150,7 @@ This project is currently being developed and tested with: keptn 0.7.1, Kubernet
 
     Note: change the value between parentesis to match the file name you used for the dummy event.
 
-1.  Optionally you can validate the the logs of the `ansibletower-service` pod.
+1.  Optionally you can validate the logs of the `ansibletower-service` pod.
 
     Example of log:
 
