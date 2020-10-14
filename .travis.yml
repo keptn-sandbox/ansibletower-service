@@ -5,7 +5,7 @@ services:
   - docker
 env:
   global:
-    - IMAGE=keptnsandbox/ansibletower-service # PLEASE CHANGE THE IMAGE NAME!!!
+    - IMAGE=keptnsandbox/ansibletower-service
     - GO111MODULE=on
     - GOPROXY=https://proxy.golang.org
 before_install:
