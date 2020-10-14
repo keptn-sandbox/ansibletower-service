@@ -123,7 +123,11 @@ func HandleActionTriggeredEvent(myKeptn *keptn.Keptn, incomingEvent cloudevents.
 			// TODO should this send any event?
 		}
 
-		myKeptn.SendActionStartedEvent(&incomingEvent, data.Labels, incomingEvent.Source())
+		err = myKeptn.SendActionStartedEvent(&incomingEvent, data.Labels, "ansibletower-service")
+		if err != nil {
+			log.Printf("Got Error From SendActionStartedEvent: %s", err.Error())
+			return err
+		}
 
 		// launch job template
 		var jobURL string
@@ -137,13 +141,17 @@ func HandleActionTriggeredEvent(myKeptn *keptn.Keptn, incomingEvent cloudevents.
 		// wait for job to finish
 		tower.WaitJobEnd(jobURL)
 
-		log.Println("all done.")
+		log.Println("Job finished.")
 
 		var actionResult keptn.ActionResult
 		actionResult.Result = "pass"
 		actionResult.Status = "succeeded"
 
-		myKeptn.SendActionFinishedEvent(&incomingEvent, actionResult, data.Labels, incomingEvent.Source())
+		myKeptn.SendActionFinishedEvent(&incomingEvent, actionResult, data.Labels, "ansibletower-service")
+		if err != nil {
+			log.Printf("Got Error From SendActionFinishedEvent: %s", err.Error())
+			return err
+		}
 	}
 
 	return nil
