@@ -3,7 +3,9 @@
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/keptn-sandbox/ansibletower-service)
 [![Go Report Card](https://goreportcard.com/badge/github.com/keptn-sandbox/grafana-service)](https://goreportcard.com/report/github.com/keptn-sandbox/ansibletower-service)
 
-:warning: Please note that this is a work in progress. We are happy to accept contributions - please file an issue or a PR!
+This service will trigger Ansible Tower playbooks as part of a Keptn remediation execution. [Learn more](https://keptn.sh/docs/concepts/automated_operations/) about Keptn's approach to automated operations.
+
+We are happy to accept contributions - please file an issue or a PR!
 
 ## Demo flow
 Here's a current example of the ansibletower-service (on the right) receiving an event and launching the job template on Ansible Tower (on the left). The ansibletower-service then waits for the job to finish.
@@ -50,11 +52,9 @@ This project is currently being developed and tested with: keptn 0.7.1, Kubernet
     Install the Ansible Tower service for Keptn by applying the provided yaml file (latest version).
     
     ```
-    kubectl apply -f https://raw.githubusercontent.com/keptn-sandbox/ansibletower-service/master/deploy/service.yaml
+    kubectl apply -f https://raw.githubusercontent.com/keptn-sandbox/ansibletower-service/0.1.0/deploy/service.yaml
     ```
     This will install the Ansible Tower service in the Keptn namespace.
-
-# TODO describe how to setup a demo playbook in Ansible Tower. we could add the demo playbook also in this repo for users to reuse
 
 # Demo use case: Onboard sample application
 
@@ -181,5 +181,4 @@ This project is currently being developed and tested with: keptn 0.7.1, Kubernet
 
 # Next steps & Future improvements
 
-- Validate the result of the action and send the correct values in the `ActionResult`
-- Parameterize certificate skipping
+The Issues are being used to keep track of future development, so please file an issue or a PR.
