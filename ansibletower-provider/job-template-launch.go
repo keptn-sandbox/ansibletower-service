@@ -14,10 +14,10 @@ import (
 
 	job_template "github.com/keptn-sandbox/ansibletower-service/ansibletower-provider/api-response-types/job_template"
 	jobs "github.com/keptn-sandbox/ansibletower-service/ansibletower-provider/api-response-types/jobs"
-	keptn "github.com/keptn/go-utils/pkg/lib"
+	keptnv2 "github.com/keptn/go-utils/pkg/lib/v0_2_0"
 )
 
-func LaunchJobTemplate(data *keptn.ActionTriggeredEventData) (string, error) {
+func LaunchJobTemplate(data *keptnv2.ActionTriggeredEventData) (string, error) {
 	var err error
 
 	serviceHost := os.Getenv("ANSIBLETOWER_HOST")

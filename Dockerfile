@@ -5,7 +5,7 @@ FROM golang:1.13.7-alpine as builder
 
 RUN apk add --no-cache gcc libc-dev git
 
-WORKDIR /src/ansibletower-service
+WORKDIR /src/ansible-tower-service
 
 ARG version=develop
 ENV VERSION="${version}"
@@ -32,7 +32,7 @@ COPY . .
 
 # Build the command inside the container.
 # (You may fetch or manage dependencies here, either manually or with a tool like "godep".)
-RUN GOOS=linux go build -ldflags '-linkmode=external' $BUILDFLAGS -v -o ansibletower-service
+RUN GOOS=linux go build -ldflags '-linkmode=external' $BUILDFLAGS -v -o ansible-tower-service
 
 # Use a Docker multi-stage build to create a lean production image.
 # https://docs.docker.com/develop/develop-images/multistage-build/#use-multi-stage-builds
@@ -51,7 +51,7 @@ ARG version=develop
 ENV VERSION="${version}"
 
 # Copy the binary to the production image from the builder stage.
-COPY --from=builder /src/ansibletower-service/ansibletower-service /ansibletower-service
+COPY --from=builder /src/ansible-tower-service/ansible-tower-service /ansible-tower-service
 
 EXPOSE 8080
 
@@ -59,9 +59,9 @@ EXPOSE 8080
 ENV GOTRACEBACK=all
 
 # KEEP THE FOLLOWING LINES COMMENTED OUT!!! (they will be included within the travis-ci build)
-#travis-uncomment ADD docker/MANIFEST /
-#travis-uncomment COPY docker/entrypoint.sh /
-#travis-uncomment ENTRYPOINT ["/entrypoint.sh"]
+#build-uncomment ADD MANIFEST /
+#build-uncomment COPY entrypoint.sh /
+#build-uncomment ENTRYPOINT ["/entrypoint.sh"]
 
 # Run the web service on container startup.
-CMD ["/ansibletower-service"]
+CMD ["/ansible-tower-service"]

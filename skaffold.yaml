@@ -2,7 +2,7 @@ apiVersion: skaffold/v1beta13
 kind: Config
 build:
   artifacts:
-    - image: keptnsandbox/ansibletower-service # Todo: Replace this with your image name
+    - image: keptnsandbox/ansible-tower-service # Todo: Replace this with your image name
       docker:
         dockerfile: Dockerfile
         buildArgs:
